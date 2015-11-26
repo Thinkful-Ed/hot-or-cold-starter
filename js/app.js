@@ -2,7 +2,7 @@
 'use strict';
 var secretNumber, 
 userGuess, 
-pastGuesses, 
+pastGuesses = [], 
 count,
 guessHtml, 
 userFeedback,
@@ -36,7 +36,7 @@ $(document).ready(pageLoad);
   	$guessList = $('#guessList');
 
     //page load
-    // newGame();
+    newGame();
     //event handlers
     $form.submit(function(event){
       event.preventDefault();
@@ -83,11 +83,13 @@ function getUserGuess(){
   			alert('please choose a number between zero and 100');
   			return true;
   		}
-		$.each(pastGuesses,function(guess,value){
-			if(userGuess == value){
-				alreadyGuessed = true;
-			}
-		}); 
+  		if(pastGuesses.length > 0){
+			$.each(pastGuesses,function(guess,value){
+				if(userGuess == value){
+					alreadyGuessed = true;
+				}
+			}); 
+		}
 		if(alreadyGuessed){
 			alreadyGuessed = false;
 			alert('You guessed this number already');
