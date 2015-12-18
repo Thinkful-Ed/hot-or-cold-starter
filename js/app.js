@@ -1,7 +1,6 @@
 
-
-
 $(document).ready(function(){
+
 	
 	/*--- Display information modal box ---*/
   	$(".what").click(function(){
@@ -21,7 +20,7 @@ $(document).ready(function(){
     
   })
 
-  
+
 
 
 });
@@ -41,12 +40,17 @@ $(document).ready(function(){
       reset array
       reset random #
 }*/
+var secretNumber = 0;
+var finish = false;
 
 var newGame = function() {
+      var guessCount = 0;
       var guesses =[];
       $('#userGuess').val("");
       $('#guessList').val("");
-
+      $('#count').text(guessCount)
+      secretNumber = Math.floor(Math.random()*100);
+      finish = false;
       $('#guessButton').click(function() {
 
 
@@ -55,8 +59,9 @@ var newGame = function() {
 
 var guessGame = function() {
   var guess = $('#userGuess').val();
-  
-
-
+  var secretNumberGenerator = function() {
+    secretNumber = (Math.floor(Math.random()*100));
+    console.log("Secret number = " + secretNumber);
+  }
 }
 
