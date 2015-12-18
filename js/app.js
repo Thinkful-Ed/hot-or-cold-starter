@@ -1,4 +1,6 @@
 
+
+
 $(document).ready(function(){
 	
 	/*--- Display information modal box ---*/
@@ -14,7 +16,16 @@ $(document).ready(function(){
 
 
 
+  $('.new').click(function(){
+      newGame();
+    
+  })
+
+  
+
+
 });
+
 
 //var newGame = function() 
 //math.random to generate new random numbers
@@ -29,4 +40,23 @@ $(document).ready(function(){
       reset guesses #
       reset array
       reset random #
+}*/
+
+var newGame = function() {
+      var guesses =[];
+      $('#userGuess').val("");
+      $('#guessList').val("");
+
+      $('#guessButton').click(function() {
+
+
+    })
+  }
+
+var guessGame = function() {
+  var guess = $('#userGuess').val();
+  
+
+
 }
+
