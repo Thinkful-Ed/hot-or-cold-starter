@@ -40,28 +40,55 @@ $(document).ready(function(){
       reset array
       reset random #
 }*/
-var secretNumber = 0;
+
 var finish = false;
 
 var newGame = function() {
       var guessCount = 0;
       var guesses =[];
+      var elFeedback = $('#feedback');
       $('#userGuess').val("");
-      $('#guessList').val("");
-      $('#count').text(guessCount)
-      secretNumber = Math.floor(Math.random()*100);
+      $('#guessList').text("");
+      $('#count').text(guesses.length);
+      $('#feedback').text("Make Your Guess!");
+      var secretNumber = Math.floor(Math.random()*100);
       finish = false;
-      $('#guessButton').click(function() {
+      
+      $('#guessButton').click(function(e) {
+        e.preventDefault();
+        var guess = Number($('#userGuess').val());
+        guesses.push(guess);
+        console.log(guesses);
+        var guessString = guesses.toString();
+        $('#guessList').text(guessString);
+        var guessDifference = Math.abs(secretNumber - guess);
+          if (guessDifference === 0) {
+            $('#feedback').text("Congrats!!!! Sound the Alarm");
+
+          } else if (guessDifference > 80){
+            $('#feedback').text("Ice Cold")
+
+          }  else if (guessDifference > 60){
+            $('#feedback').text("still pretty cold");
+
+          } else if (guessDifference > 40){
+            $('#feedback').text("starting to thaw out");
+          } else if (guessDifference > 20) {
+            $('#feedback').text("getting warmer");
+          } else if (guessDifference > 10) {
+            $('#feedback').text("getting hot");
+          } else if (guessDifference > 5) {
+            $('#feedback').text("hot!!!!!");
+          } else {
+            $('#feedback').text("on fire!");
+          }
+          
+
+          
+          $('#count').text(guesses.length);
 
 
-    })
-  }
-
-var guessGame = function() {
-  var guess = $('#userGuess').val();
-  var secretNumberGenerator = function() {
-    secretNumber = (Math.floor(Math.random()*100));
-    console.log("Secret number = " + secretNumber);
-  }
+   })
 }
 
+newGame();
