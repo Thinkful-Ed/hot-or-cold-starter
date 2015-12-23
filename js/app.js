@@ -61,6 +61,7 @@ var newGame = function() {
         console.log(guesses);
         var guessString = guesses.toString();
         $('#guessList').text(guessString);
+        $('#userGuess').val("");
         var guessDifference = Math.abs(secretNumber - guess);
           if (guessDifference === 0) {
             $('#feedback').text("Congrats!!!! Sound the Alarm");
@@ -69,18 +70,18 @@ var newGame = function() {
             $('#feedback').text("Ice Cold")
 
           }  else if (guessDifference > 60){
-            $('#feedback').text("still pretty cold");
+            $('#feedback').text("Still Pretty Cold");
 
           } else if (guessDifference > 40){
-            $('#feedback').text("starting to thaw out");
+            $('#feedback').text("Starting to Thaw Out");
           } else if (guessDifference > 20) {
-            $('#feedback').text("getting warmer");
+            $('#feedback').text("Getting Warmer");
           } else if (guessDifference > 10) {
-            $('#feedback').text("getting hot");
+            $('#feedback').text("Getting Hot");
           } else if (guessDifference > 5) {
-            $('#feedback').text("hot!!!!!");
+            $('#feedback').text("Hot!!!!!");
           } else {
-            $('#feedback').text("on fire!");
+            $('#feedback').text("On Fire!");
           }
           
 
