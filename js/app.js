@@ -56,7 +56,7 @@ function newGame(){
 //get the user guess
 function getUserGuess(){
 	//get the user guess
-	userGuess = $input.val();
+	userGuess = input.val();
 	//reset input value
 	input.val('');
 	//focus on input for next guess
