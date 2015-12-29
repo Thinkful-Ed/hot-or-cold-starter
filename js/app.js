@@ -7,12 +7,12 @@ count,
 guessHtml, 
 userFeedback,
 alreadyGuessed,
-$newButton,
-$form ,
-$input,
-$feedback,
-$count,
-$guessList;
+newButton,
+form ,
+input,
+feedback,
+count,
+guessList;
 
 $(document).ready(pageLoad);
 
@@ -28,26 +28,26 @@ $(document).ready(pageLoad);
   	});
 
   	//fetch dom objects
-  	$newButton = $('a.new');
-  	$form = $('form');
-  	$input = $form.find('#userGuess');
-  	$feedback = $('#feedback');
-  	$count = $('#count');
-  	$guessList = $('#guessList');
+  	newButton = $('a.new');
+  	form = $('form');
+  	input = $form.find('#userGuess');
+  	feedback = $('#feedback');
+  	count = $('#count');
+  	guessList = $('#guessList');
 
     //page load
     newGame();
     //event handlers
-    $form.submit(function(event){
+    form.submit(function(event){
       event.preventDefault();
       getUserGuess();
     });
-    $newButton.click(newGame);
+    newButton.click(newGame);
 }
 
 //new game function
 function newGame(){
-	$form.find('input[type=submit]').css('opacity','1');
+	form.find('input[type=submit]').css('opacity','1');
 	resetVariables();
 	render();
 	generateNumber();
@@ -58,9 +58,9 @@ function getUserGuess(){
 	//get the user guess
 	userGuess = $input.val();
 	//reset input value
-	$input.val('');
+	input.val('');
 	//focus on input for next guess
-	$input.focus();
+	input.focus();
 	//ensure valid input
 	if(checkGuess()){return ;}
 	//generate feedback
@@ -131,14 +131,14 @@ function guessCount(){
 
 	//page render function
 function render(){
-	$guessList.html(guessHtml);
-	$count.html(count);
-	$feedback.html(userFeedback);
+	guessList.html(guessHtml);
+	count.html(count);
+	feedback.html(userFeedback);
 }
 
 function winner(){
 	userFeedback = 'You Won. Click new game to play again';
-	$form.find('input[type=submit]').css('opacity','0');
+	form.find('input[type=submit]').css('opacity','0');
 }
   	
 //generate secret number
