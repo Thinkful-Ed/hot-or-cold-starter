@@ -11,7 +11,7 @@ newButton,
 form ,
 input,
 feedback,
-count,
+countElement,
 guessList;
 
 $(document).ready(pageLoad);
@@ -32,7 +32,7 @@ $(document).ready(pageLoad);
   	form = $('form');
   	input = form.find('#userGuess');
   	feedback = $('#feedback');
-  	count = $('#count');
+  	countElement = $('#count');
   	guessList = $('#guessList');
 
     //page load
@@ -132,7 +132,7 @@ function guessCount(){
 	//page render function
 function render(){
 	guessList.html(guessHtml);
-	count.html(count);
+	countElement.html(count);
 	feedback.html(userFeedback);
 }
 
