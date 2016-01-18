@@ -4,20 +4,20 @@ $(document).ready(function(){
 
 
 
-// This function generates the random number
+// this function generates the random number
 function secretNum(min, max) {
 	var secretNumber = Math.floor(Math.random() * (max - min + 1)) + min;
 	return secretNumber;
 }
 
 
-// This sets the boundaries of what the secret number could be and sets up the console to display that number
-var secretNumber = secretNum(1, 100);
+// this sets the boundaries of what the secret number could be and sets up the console to display that number
+var secretNumber = secretNum(1, 50);
 console.log("Secret Number: " + secretNumber);
 
 /*backgroundColor change included in JS document so that it may change colors,
 depending on whether the guess was hotter or colder..*/
-document.body.style.backgroundColor = '#333';
+document.body.style.backgroundColor = '#999';
 
 //the player's old guess must start at 0.
 var oldGuess = 0;
@@ -35,7 +35,7 @@ function newGame() {
 
 
  
-/*This section sets the boundaries for how hot/cold the user is, and the
+/*this section sets the boundaries for how hot/cold the user is, and the
 parameters that each temperature definition lies in */
 function guessFeedback (secretNumber, guessedNumber) {
     var difference = Math.abs(secretNumber - guessedNumber);
@@ -63,7 +63,7 @@ function guessFeedback (secretNumber, guessedNumber) {
 }
 
 
-    // Function to provide "relative feedback" to the user (based on what the user's prior guess was).
+    // function to provide "relative feedback" to the user (based on what the user's prior guess was).
     function relativeFeedback(secretNumber, oldGuess, newGuess) {
         var oldDiff = parseInt(Math.abs(secretNumber - oldGuess));
         var newDiff = parseInt(Math.abs(secretNumber - newGuess));
@@ -76,40 +76,43 @@ function guessFeedback (secretNumber, guessedNumber) {
         }
     }
 
-    // Function to count the number of guesses
+    // function to count the number of guesses
     function guessCounter(counter) {
         $('#count').text(counter);
     }
 
-    // Function to show the history of guesses
+    // function to show the history of guesses
     function guessHistory() {
         $('#guessList').append('<li>' + parseInt($('#userGuess').val(), 10) + '</li>');
     }
 
 
-    // Function to implement a simple validation of the user input
+    // function to show a simple validation of the user input
     function validation(guessedNumber) {
 
         //check the guessed number in the console
         console.log("Guessed Number: " + guessedNumber)
 
-        //if the number is divisible by 1 it means it is an integer (it has no decimals)
+        // if the number is divisible by 1 it means it is an integer (It has no decimals)
         if (guessedNumber % 1 !== 0) {
             alert('You must enter an integer value!!');
-            //reset the guess value to nothing
+            //This resets the guess value to nothing
             $('#userGuess').val('');
-            return false; // this means, stop the loop and don't do anything else
+            // This stops the loop, and it no longer runs.
+            return false;
         }
 
-        //if the guessedNumber is smaller than 1 OR the guessedNumber is bigger than 100...
-        else if (guessedNumber < 1 || guessedNumber > 100) {
-            alert('Please guess a number between 1 to 100!!');
+        // if the guessedNumber is smaller than 1 OR the guessedNumber is bigger than 50...
+        else if (guessedNumber < 1 || guessedNumber > 50) {
+            alert('Please guess a number between 1 to 50!!');
             //reset the guess value to nothing
             $('#userGuess').val('');
-            return false; // this means, stop the loop and don't do anything else
+            // This stops the loop, and it no longer runs.
+            return false;
+
         }
 
-        //else the guessedNumber is valid
+        // else the guessedNumber is valid
         else {
             guessFeedback(secretNumber, guessedNumber);
             counter--;
@@ -129,7 +132,9 @@ function guessFeedback (secretNumber, guessedNumber) {
         guessCounter(counter);
     }
 
-// declared functions above, invoked functions below.....
+// declared functions above, invoked functions below (using jQuery).....
+
+
 
     $('.new').on('click', newGame);
 
@@ -161,13 +166,13 @@ function guessFeedback (secretNumber, guessedNumber) {
     });
 
 
-    /*--- Display information modal box ---*/
+    /*--- Display information in modal 'what?' button ---*/
     $(".what").click(function(){
         $(".overlay").fadeIn(1000);
 
     });
 
-    /*--- Hide information modal box ---*/
+    /*--- Hide information for modal 'Got It!' button ---*/
     $("a.close").click(function(){
         $(".overlay").fadeOut(1000);
     });
