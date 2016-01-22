@@ -39,19 +39,19 @@ function newGame() {
 parameters that each temperature definition lies in */
 function guessFeedback (secretNumber, guessedNumber) {
     var difference = Math.abs(secretNumber - guessedNumber);
-    if (difference >= 50) {
+    if (difference >= 25) {
         $('#feedback').text('Ice Cold!');
         document.body.style.backgroundColor = '#002cb3';
-    } else if (difference >= 30 && difference <= 49) {
+    } else if (difference >= 15 && difference <= 25) {
         $('#feedback').text('Cold!');
         document.body.style.backgroundColor = '#3333cc';
-    } else if (difference >= 20 && difference <= 29) {
+    } else if (difference >= 10 && difference <= 15) {
         $('#feedback').text('Warm!');
         document.body.style.backgroundColor = '#8533ff';
-    } else if (difference >= 10 && difference <= 19) {
+    } else if (difference >= 5 && difference <= 10) {
         $('#feedback').text('Hot!');
         document.body.style.backgroundColor = '#b84dff';
-    } else if (difference >= 1 && difference <= 9) {
+    } else if (difference >= 1 && difference <= 5) {
         $('#feedback').text('Very Hot!!');
         document.body.style.backgroundColor = '#fc0446';
     } else {
@@ -144,7 +144,7 @@ function guessFeedback (secretNumber, guessedNumber) {
 
         validation(guessedNumber);
 
-        if (oldGuess !== 0 && guessedNumber >= 1 && guessedNumber <= 100) {
+        if (oldGuess !== 0 && guessedNumber >= 1 && guessedNumber <= 50) {
             relativeFeedback(secretNumber, oldGuess, newGuess);
         }
         oldGuess = newGuess;
@@ -158,7 +158,7 @@ function guessFeedback (secretNumber, guessedNumber) {
 
             validation(guessedNumber);
 
-            if (oldGuess !== 0 && guessedNumber >= 1 && guessedNumber <= 100) {
+            if (oldGuess !== 0 && guessedNumber >= 1 && guessedNumber <= 50) {
                 relativeFeedback(secretNumber, oldGuess, newGuess);
             }
             oldGuess = newGuess;
