@@ -1,6 +1,8 @@
 
 $(document).ready(function(){
-	
+var randomNumber = Math.floor(Math.random() * 100);
+console.log(randomNumber);
+
 	/*--- Display information modal box ---*/
   	$(".what").click(function(){
     	$(".overlay").fadeIn(1000);
