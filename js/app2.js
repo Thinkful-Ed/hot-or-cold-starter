@@ -8,18 +8,11 @@ $(document).ready(function () {
     var secretNumber = generateRandomNumber(1, 100);
     //console.log("Secret Number: " + secretNumber);
 
-    //change default bg color to neutral grey
-    document.body.style.backgroundColor = '#333';
-
     var oldGuess = 0;
 
-    //set the maximum number of guesses
-    var counter = 30;
+    //set the counter
+    var counter = 0;
     $('#count').text(counter);
-
-
-
-
 
     /* Step 2
     Functions definitions
@@ -32,8 +25,8 @@ $(document).ready(function () {
 
     // Function to generate the random number
     function generateRandomNumber(min, max) {
-        var randomtNumber = Math.floor(Math.random() * (max - min + 1)) + min;
-        return randomtNumber;
+        var randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
+        return randomNumber;
     }
 
     // Function to count the number of guesses
@@ -46,7 +39,7 @@ $(document).ready(function () {
         $('#guessList').append('<li>' + guessedNumber + '</li>');
     }
 
-    // Function to implement a simple validation of the iser input
+    // Function to implement a simple validation of the user input
     function validation(guessedNumber) {
 
         //check the guessed number in the console
@@ -57,7 +50,7 @@ $(document).ready(function () {
 
         //make sure that we get a number
         if (isNaN(guessedNumber)) {
-            alert('You must enter anumber!!');
+            alert('You must enter a number!');
             //reset the guess value to nothing
             $('#userGuess').val('');
             return false; // this means, stop the loop and don't do anything else
@@ -65,7 +58,7 @@ $(document).ready(function () {
 
         //if the number is divisible by 1 it means it is an integer (it has no decimals)
         else if (guessedNumber % 1 !== 0) {
-            alert('You must enter an integer value!!');
+            alert('You must enter an integer value!');
             //reset the guess value to nothing
             $('#userGuess').val('');
             return false; // this means, stop the loop and don't do anything else
@@ -73,7 +66,7 @@ $(document).ready(function () {
 
         //if the guessedNumber is smaller than 1 OR the guessedNumber is bigger than 100...
         else if (guessedNumber < 1 || guessedNumber > 100) {
-            alert('Please guess a number between 1 to 100!!');
+            alert('Please guess a number between 1 and 100!');
             //reset the guess value to nothing
             $('#userGuess').val('');
             return false; // this means, stop the loop and don't do anything else
@@ -82,24 +75,14 @@ $(document).ready(function () {
         //else the guessedNumber is valid
         else {
             guessFeedback(secretNumber, guessedNumber);
-            counter--;
+            counter++;
             //update the guess history
             guessHistory(guessedNumber);
             //update the number of guesses
             showGuessCounter(counter);
             $('#userGuess').val('');
-
-            //if the number of guesses is smaller than 0 it means that the game is over
-            if (counter <= 0) {
-                $('#feedback').text('Game Over!');
-                document.getElementById("userGuess").disabled = true;
-                document.getElementById("guessButton").disabled = true;
-                alert('The Secret number was ' + secretNumber + ' ! Better luck next time !!');
-            }
         }
-
-
-    }
+    };
 
     // Function to provide feedback to the user
     function guessFeedback(secretNumber, guessedNumber) {
@@ -107,19 +90,14 @@ $(document).ready(function () {
         var difference = Math.abs(secretNumber - guessedNumber);
         if (difference >= 50) {
             $('#feedback').text('Ice Cold!');
-            document.body.style.backgroundColor = '#002cb3';
         } else if (difference >= 30 && difference <= 49) {
             $('#feedback').text('Cold!');
-            document.body.style.backgroundColor = '#3333cc';
         } else if (difference >= 20 && difference <= 29) {
             $('#feedback').text('Warm!');
-            document.body.style.backgroundColor = '#8533ff';
         } else if (difference >= 10 && difference <= 19) {
             $('#feedback').text('Hot!');
-            document.body.style.backgroundColor = '#b84dff';
         } else if (difference >= 1 && difference <= 9) {
             $('#feedback').text('Very Hot!!');
-            document.body.style.backgroundColor = '#fc0446';
         } else {
             $('#feedback').text('You got it. Well done!');
             document.body.style.backgroundColor = '#ff0404';
@@ -127,23 +105,6 @@ $(document).ready(function () {
             document.getElementById("guessButton").disabled = true;
         }
     }
-
-    // Function to provide relative feedback to the user
-    function relativeFeedback(secretNumber, oldGuess, newGuess) {
-        var oldDiff = Math.abs(parseInt(secretNumber) - parseInt(oldGuess));
-        var newDiff = Math.abs(parseInt(secretNumber) - parseInt(newGuess));
-        if (newDiff > oldDiff) {
-            $('#relative-feedback').text('You are colder than the last guess!');
-        } else if (newDiff === oldDiff) {
-            $('#relative-feedback').text('You are as far as your previous guess!');
-        } else {
-            $('#relative-feedback').text('You are hotter than the last guess!');
-        }
-    }
-
-
-
-
 
 
     /* Step 3
@@ -159,13 +120,6 @@ $(document).ready(function () {
         //validate all the numbers
         validation(guessedNumber);
 
-        //only if the user added more than one guess (there is a guess history)
-
-        if (oldGuess !== 0 && guessedNumber >= 1 && guessedNumber <= 100) {
-            relativeFeedback(secretNumber, oldGuess, newGuess);
-        }
-        //re-update the old guess with the the new value
-        oldGuess = newGuess;
     });
 
     $(document).on('keypress', function (e) {
@@ -178,13 +132,6 @@ $(document).ready(function () {
             //validate all the numbers
             validation(guessedNumber);
 
-            //only if the user added more than one guess (there is a guess history)
-
-            if (oldGuess !== 0 && guessedNumber >= 1 && guessedNumber <= 100) {
-                relativeFeedback(secretNumber, oldGuess, newGuess);
-            }
-            //re-update the old guess with the the new value
-            oldGuess = newGuess;
         }
     });
 
