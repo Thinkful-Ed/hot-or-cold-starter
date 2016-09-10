@@ -25,6 +25,11 @@ $(document).ready(function(){
         $('#userInput').val(''); 
       }); 
     }
+
+    $("#buttonGuess").click(function(){
+        userGuess()
+    });
+
     $("#count").html(parseInt($("#count").html())+1);
     
     function newGame(){
@@ -34,20 +39,24 @@ $(document).ready(function(){
       console.log("Inside newGame", randomNumber);
       // return x;
     }
-    button.addEventListener("click", function userGuess(){
-
-    }) 
+    
+    
     function userGuess(){
       if (userGuess %1 !== 0) { 
-        alert ("Please submit a whole number");
-
-      }
-      else {
-
-      }
-        else if (userGuess <= secretNumber -50 || userGuess <= secretNumber + 50) {
-          alert ("Scorching Hot");
-        }
+        alert ("Please submit a whole number")
+      } else if (userGuess <= secretNumber -50 || userGuess <= secretNumber + 50) {
+          $("#feedback").append("Icy Cold")
+      } else if (userGuess <= secretNumber -30 || userGuess <= secretNumber +30){
+          $("#feedback").append("cold")
+      } else if (userGuess <= secretNumber -20 || userGuess <= secretNumber +20){
+          $("#feedback").append("warm")
+      } else if (userGuess <= secretNumber -10 || userGuess <= secretNumber +10){
+          $("#feedback").append("hot")
+      } else if (userGuess <= secretNumber -5 || userGuess <= secretNumber +5){
+          $("#feedback").append("Sorching hot")
+      } else if (userGuess === secretNumber){
+          $("#feedback").append("You guessed the number!")
+      };
     }
 
     function secretNumber(){
