@@ -2,6 +2,7 @@
 $(document).ready(function(){
 	
   var randomNumber = secretNumber();
+  console.log('randomNumber', randomNumber);
 
 	/*--- Display information modal box ---*/
   	$(".what").click(function(){
@@ -26,8 +27,10 @@ $(document).ready(function(){
       }); 
     }
 
-    $("#buttonGuess").click(function(){
-        userGuess()
+    $("#guessButton").click(function(event){
+      event.preventDefault();
+      var guess = $('#userGuess').val()
+        userGuess(guess);
     });
 
     $("#count").html(parseInt($("#count").html())+1);
@@ -39,24 +42,35 @@ $(document).ready(function(){
       console.log("Inside newGame", randomNumber);
       // return x;
     }
-    
-    
-    function userGuess(){
-      if (userGuess %1 !== 0) { 
+
+    // contract
+    function userGuess(guess){
+      guess = parseInt(guess);
+      console.log(
+        guess <= randomNumber -5,
+        guess >= randomNumber +5,
+        randomNumber + 5,
+        randomNumber - 5
+       );
+      if (guess %1 != 0) { 
         alert ("Please submit a whole number")
-      } else if (userGuess <= secretNumber -50 || userGuess <= secretNumber + 50) {
-          $("#feedback").append("Icy Cold")
-      } else if (userGuess <= secretNumber -30 || userGuess <= secretNumber +30){
-          $("#feedback").append("cold")
-      } else if (userGuess <= secretNumber -20 || userGuess <= secretNumber +20){
-          $("#feedback").append("warm")
-      } else if (userGuess <= secretNumber -10 || userGuess <= secretNumber +10){
-          $("#feedback").append("hot")
-      } else if (userGuess <= secretNumber -5 || userGuess <= secretNumber +5){
-          $("#feedback").append("Sorching hot")
-      } else if (userGuess === secretNumber){
-          $("#feedback").append("You guessed the number!")
-      };
+        
+      } else if (guess <= randomNumber -50 || guess >= randomNumber + 50) {
+          $("#feedback").html("Icy Cold")
+      } else if (guess <= randomNumber -30 || guess >= randomNumber +30){
+          $("#feedback").html("cold")
+      } else if (guess <= randomNumber -20 || guess >= randomNumber +20){
+          $("#feedback").html("warm")
+      } else if (guess <= randomNumber -10 || guess >= randomNumber +10){
+          $("#feedback").html("hot")
+      } else if (guess >= randomNumber -5 && guess <= randomNumber +5){
+          $("#feedback").html("Sorching hot")
+      } else if (guess === randomNumber){          
+        $("#feedback").html("You guessed the number!")
+      }
+      else {
+        $("#feedback").html("Otherwise");
+      }
     }
 
     function secretNumber(){
