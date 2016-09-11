@@ -53,12 +53,22 @@ $(document).ready(function(){
     // contract
     function userGuess(guess){
       guess = parseInt(guess);
-      console.log(
+      clear()
+      /*console.log(
         guess <= randomNumber -5,
         guess >= randomNumber +5,
         randomNumber + 5,
         randomNumber - 5
-       );
+       );*/
+
+      function clear(){
+        $('.clear').on('click', function(){
+          $("#guessBox clearfix").append($("<li>").text("#userGuess"));
+          $('#userGuess').empty();
+          $
+        });
+      };
+
       if (guess %1 != 0) { 
         alert ("Please submit a whole number")
         
@@ -84,6 +94,8 @@ $(document).ready(function(){
       return Math.floor((Math.random() * 100) + 1);
     }
 });
+
+
 
 //function clear() { //clear html and texbox $('.clear').on('click', function() { $('.result').empty(); $('#userInput').val(''); }); }
 //else if (userGuess <= secretNumber -50) {alert ("Sorching Hot")}
