@@ -29,11 +29,18 @@ $(document).ready(function(){
 
     $("#guessButton").click(function(event){
       event.preventDefault();
-      var guess = $('#userGuess').val()
+      var guess = $("#userGuess").val()
         userGuess(guess);
+      
     });
 
-    $("#count").html(parseInt($("#count").html())+1);
+    $("#guessButton").click(function(guess) { 
+      var counter = $("#count").val(); 
+      counter ++; 
+      $("#count").html(counter);
+    });
+
+    //$("#count").html(parseInt($("#count").html())+1);
     
     function newGame(){
       // numbers will be placed in (remove those numbers)
@@ -64,7 +71,7 @@ $(document).ready(function(){
       } else if (guess <= randomNumber -10 || guess >= randomNumber +10){
           $("#feedback").html("hot")
       } else if (guess >= randomNumber -5 && guess <= randomNumber +5){
-          $("#feedback").html("Sorching hot")
+          $("#feedback").html("Scorching hot")
       } else if (guess === randomNumber){          
         $("#feedback").html("You guessed the number!")
       }
