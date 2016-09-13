@@ -15,96 +15,83 @@ $(document).ready(function(){
   		$(".overlay").fadeOut(1000);
   	});
 
-
+  function newGame(){
+    // numbers will be placed in (remove those numbers)
+    // tells you whether you are near or far from the answer
+    randomNumber = secretNumber();
+    console.log("Inside newGame", randomNumber);
+    // return x;
+  }
 
     $(".new").click(function(){
       newGame();
     });
-    function clear() { //clear html and texbox// 
-      $('.clear').on('click', function() { 
-        $('.result').empty(); 
-        $('#userInput').val(''); 
-      }); 
+
+   function secretNumber(){
+      return Math.floor((Math.random() * 100) + 1);
     }
 
-    $("#guessButton").click(function(event){
+  $("#guessButton").click(function(event){
       event.preventDefault();
       var guess = $("#userGuess").val()
-        userGuess(guess);
-      
-    });
+      userGuess(guess);
 
-    $("#guessButton").click(function(guess) { 
-      var counter = $("#count").val(); 
-      counter ++; 
-      $("#count").html(counter);
-    });
+  });
 
-    //$("#count").html(parseInt($("#count").html())+1);
-    
-    function newGame(){
-      // numbers will be placed in (remove those numbers)
-      // tells you whether you are near or far from the answer
-      randomNumber = secretNumber();
-      console.log("Inside newGame", randomNumber);
-      // return x;
-    }
-
-    // contract
-    function userGuess(guess){
-      guess = parseInt(guess);
-      clear()
+  // contract
+  function userGuess(guess){
+    guess = parseInt(guess);
+    list()
       /*console.log(
         guess <= randomNumber -5,
         guess >= randomNumber +5,
         randomNumber + 5,
         randomNumber - 5
        );*/
+    if (guess %1 != 0) { 
+      alert ("Please submit a whole number")
+        } else if (guess <= randomNumber -50 || guess >= randomNumber + 50) {
+            $("#feedback").html("Icy Cold")
+        } else if (guess <= randomNumber -30 || guess >= randomNumber +30){
+            $("#feedback").html("cold")
+        } else if (guess <= randomNumber -20 || guess >= randomNumber +20){
+            $("#feedback").html("warm")
+        } else if (guess <= randomNumber -10 || guess >= randomNumber +10){
+            $("#feedback").html("hot")
+        } else if (guess >= randomNumber -5 && guess <= randomNumber +5){
+            $("#feedback").html("Scorching hot")
+        } else if (guess === randomNumber){          
+            $("#feedback").html("You guessed the number!")
+        }
+        /*else {
+          $("#feedback").html("Otherwise");
+        }*/
+  }
 
-      function clear(){
-        $('.clear').on('click', function(){
-          $("#guessBox clearfix").append($("<li>").text("#userGuess"));
-          $('#userGuess').empty();
-          $
-        });
-      };
+  function list(){
+    $('#guessButton').on('click', function(){
+        $("ul#guessList").append($("<li>").text($("#userGuess").val()));
+        $('#userGuess').empty();
+    });
+  };
 
-      if (guess %1 != 0) { 
-        alert ("Please submit a whole number")
-        
-      } else if (guess <= randomNumber -50 || guess >= randomNumber + 50) {
-          $("#feedback").html("Icy Cold")
-      } else if (guess <= randomNumber -30 || guess >= randomNumber +30){
-          $("#feedback").html("cold")
-      } else if (guess <= randomNumber -20 || guess >= randomNumber +20){
-          $("#feedback").html("warm")
-      } else if (guess <= randomNumber -10 || guess >= randomNumber +10){
-          $("#feedback").html("hot")
-      } else if (guess >= randomNumber -5 && guess <= randomNumber +5){
-          $("#feedback").html("Scorching hot")
-      } else if (guess === randomNumber){          
-        $("#feedback").html("You guessed the number!")
-      }
-      else {
-        $("#feedback").html("Otherwise");
-      }
-    }
+  /*$("#guessButton").click(function(guess) { 
+      var counter = $("#count").val(); 
+      counter ++; 
+      $("#count").html(counter);
+  });*/
 
-    function secretNumber(){
-      return Math.floor((Math.random() * 100) + 1);
-    }
+  $("#count").html(parseInt($("#count").html())+1);
+    
 });
 
 
 
-//function clear() { //clear html and texbox $('.clear').on('click', function() { $('.result').empty(); $('#userInput').val(''); }); }
-//else if (userGuess <= secretNumber -50) {alert ("Sorching Hot")}
-//$("#feedback").append("Icy Cold")//reports results into feedback
-
-//(value % 1 !== 0) //makes sure guess isn't a decimal
-//if (userGuess %1 !== 0) { alert ("Please submit a whole number")}
+      
+//document.getElementById("myspan").innerHTML="newtext";
 
 
+ 
 
 
 
