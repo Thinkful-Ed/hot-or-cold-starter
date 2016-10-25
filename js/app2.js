@@ -1,22 +1,8 @@
 $(document).ready(function () {
 
-
-    /* Step 1
-    Declare the global variables
-    */
-
     var secretNumber = generateRandomNumber(1, 100);
-    //console.log("Secret Number: " + secretNumber);
-
     var oldGuess = 0;
-
-    //set the counter
-    var counter = 0;
-    $('#count').text(counter);
-
-    /* Step 2
-    Functions definitions
-    */
+    var counter = 20;
 
     // Function to start a new game
     function newGame() {
@@ -41,12 +27,6 @@ $(document).ready(function () {
 
     // Function to implement a simple validation of the user input
     function validation(guessedNumber) {
-
-        //check the guessed number in the console
-        //console.log("Guessed Number: " + guessedNumber);
-
-
-        /* start applying validation, from the less restrictive one to the most restrictive one; each rule NEGATES the truth*/
 
         //make sure that we get a number
         if (isNaN(guessedNumber)) {
@@ -75,7 +55,12 @@ $(document).ready(function () {
         //else the guessedNumber is valid
         else {
             guessFeedback(secretNumber, guessedNumber);
-            counter++;
+            counter--;
+            if (counter == 0) {
+                $('#feedback').text("You lose. The number was " + secretNumber);
+                document.getElementById("userGuess").disabled = true;
+                document.getElementById("guessButton").disabled = true;
+            }
             //update the guess history
             guessHistory(guessedNumber);
             //update the number of guesses
@@ -105,11 +90,6 @@ $(document).ready(function () {
             document.getElementById("guessButton").disabled = true;
         }
     }
-
-
-    /* Step 3
-    Using the Functions
-    */
 
     $('.new').on('click', newGame);
 
