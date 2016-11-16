@@ -21,6 +21,7 @@ function startNewGame() {
 	// this line sets `gameState.secretNumber` to random number
 	// between 1 and 100 -- http://stackoverflow.com/a/7228322
 	gameState.secretNumber = Math.floor(Math.random() * (100 - 1 + 1)) + 1;
+  console.log(gameState.secretNumber);
 	// user hasn't made any guesses yet, so it's an empty array
 	gameState.userGuesses = [];
 	// user hasn't made any guesses at game start, so set
