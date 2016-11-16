@@ -1,8 +1,11 @@
+'use strict';
+
 var gameState = {
 	secretNumber: null,
 	userGuesses: null,
 	guessCount: null,
-	feedback: null
+	feedback: null,
+	gameWon: false,
 };
 
 function displayGameState(gameState) {
@@ -26,6 +29,9 @@ function startNewGame() {
 	// user hasn't made any guesses at game start, so set
 	// `gameState.guessCount` to 0
 	gameState.guessCount = 0;
+	// game not won yet, so set state accordingly
+	gameState.gameWon = false;
+
 	displayGameState(gameState);
 }
 
@@ -48,7 +54,7 @@ function handleUserGuesses() {
 		// see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/parseInt
 		var userGuess = parseInt(userGuessRaw, 10);
 		//generate new feedback based on guess, and update `gameState`
-		var newFeedback = checkUserGuess(gameState.secretNumber, userGuess);
+		var newFeedback = checkUserGuess(userGuess);
 		gameState.feedback = newFeedback;
 
 		// add the userGuess to `gameState.userGuesses`
@@ -60,18 +66,33 @@ function handleUserGuesses() {
 	});
 }
 
-function checkUserGuess(correctAnswer, userAnswer) {
-	// Compare user’s guess to the correct answer
-	// If number is correct, congratulate the user
-    // If number is incorrect:
-    //   Add the number the list of guesses so far and display it
-	//   Add 1 to the guess counter and update the display
-    //   Give user feedback on whether their guess was hot or cold.
-    //   		If further than 20, cold.
-    //   		If closer than 20 hot.
-    //
-		// Extra credit: If guess was closer than previous guess,
-		// “getting hotter.” If further, “getting cooler.”
+function getAnswerDifference(correctAnswer, guess) {
+	// find the difference between `correctAnswer` and `guess`
+	// and convert it to absolute value (i.e., if difference is -20
+	// we want to convert that to 20).
+	// http://www.w3schools.com/jsref/jsref_abs.asp
+	return Math.abs(correctAnswer - guess);
+}
+
+function checkUserGuess(userAnswer) {
+	// if game already won, tell them to start a new game
+	if (gameState.gameWon) {
+		return 'You Won this game already! You need to start a new game.';
+	}
+	var answerDifference = getAnswerDifference(
+		gameState.secretNumber, userAnswer);
+	console.log('`answerDifference` is ' + answerDifference);
+	// if they just won the game, update gameState and tell them they won
+	if (answerDifference === 0) {
+		gameState.gameWon = true;
+		return 'Yay! You guessed it!!';
+	}
+	if (answerDifference <= 20) {
+		return 'You\'re getting hot!';
+	}
+	else {
+		return 'You\'re cold!';
+	}
 }
 
 function handleGameReset() {
