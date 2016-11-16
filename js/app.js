@@ -9,8 +9,11 @@ var gameState = {
 
 function displayGameState(gameState) {
 	// display feedback to the user
+	$('.js-feedback').text(gameState.feedback);
 	// display the userGuesses so far, if any
+	$('.js-guess-list').text(gameState.userGuesses.join(', '));
 	// display count of guesses so far
+	$('.js-guess-count').text(gameState.guessCount);
 }
 
 function startNewGame() {
