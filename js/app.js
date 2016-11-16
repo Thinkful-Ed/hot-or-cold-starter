@@ -3,6 +3,7 @@ var gameState = {
 	userGuesses: null,
 	guessCount: null,
 	feedback: null,
+	gameWon: false
 };
 
 
@@ -25,6 +26,9 @@ function startNewGame() {
 	// user hasn't made any guesses at game start, so set
 	// `gameState.guessCount` to 0
 	gameState.guessCount = 0;
+	// game not won yet, so set state accordingly
+	gameState.gameWon = false;
+
 	displayGameState();
 }
 
@@ -79,7 +83,7 @@ $(document).ready(function(){
 	handleInstructionsModal();
 	startNewGame();
 	handleUserGuesses();
-	
+	handleGameReset();
 });
 
 
