@@ -1,7 +1,27 @@
+var gameState = {
+	secretNumber: null,
+	userGuesses: null,
+	guessCount: null
+};
+
+
+
+function displayGameState(gameState) {
+	// display the userGuesses so far, if any
+	// display count of guesses so far
+	// display feedback to the user
+}
 
 function startNewGame() {
-	// Start a new game by generating a random number between
-	// 1 and 100 that the user must guess
+	// this line sets `gameState.secretNumber` to random number
+	// between 1 and 100 -- http://stackoverflow.com/a/7228322
+	gameState.secretNumber = Math.floor(Math.random() * (100 - 1 + 1)) + 1;
+	// user hasn't made any guesses yet, so it's an empty array
+	gameState.userGuesses = [];
+	// user hasn't made any guesses at game start, so set
+	// `gameState.guessCount` to 0
+	gameState.guessCount = 0;
+	displayGameState();
 }
 
 function handleUserGuesses() {
