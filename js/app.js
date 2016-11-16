@@ -96,8 +96,12 @@ function checkUserGuess(userAnswer) {
 }
 
 function handleGameReset() {
-	// When user clicks new game button,
-	// reset everything: correct answer, guess counter, list of guesses
+	// when they click start new game, call our handy `startNewGame` function
+	// we already created.
+	$('.js-new-game').click(function(event) {
+		event.preventDefault();
+		startNewGame();
+	});
 }
 
 
@@ -127,7 +131,7 @@ $(document).ready(function(){
 	handleInstructionsModal();
 	startNewGame();
 	handleUserGuesses();
-	
+	handleGameReset();
 });
 
 
