@@ -1,3 +1,34 @@
+
+function startNewGame() {
+	// Start a new game by generating a random number between
+	// 1 and 100 that the user must guess
+}
+
+function handleUserGuesses() {
+	// When user clicks guess button, get the value they've
+	// entered as their guess and store as variable
+}
+
+function checkUserGuess(correctAnswer, userAnswer) {
+	// Compare user’s guess to the correct answer
+	// If number is correct, congratulate the user
+    // If number is incorrect:
+    //   Add the number the list of guesses so far and display it
+	//   Add 1 to the guess counter and update the display
+    //   Give user feedback on whether their guess was hot or cold.
+    //   		If further than 20, cold.
+    //   		If closer than 20 hot.
+    //
+		// Extra credit: If guess was closer than previous guess,
+		// “getting hotter.” If further, “getting cooler.”
+}
+
+function handleGameReset() {
+	// When user clicks new game button,
+	// reset everything: correct answer, guess counter, list of guesses
+}
+
+
 function handleInstructionsModal() {
 	// when users click on the element with
 	// `.js-what` class, we'll fade in
@@ -22,6 +53,9 @@ function handleInstructionsModal() {
 // `handleInstructionsModal` function.
 $(document).ready(function(){
 	handleInstructionsModal();
+	startNewGame();
+	handleUserGuesses();
+	
 });
 
 

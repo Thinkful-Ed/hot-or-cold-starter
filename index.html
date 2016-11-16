@@ -51,11 +51,11 @@
 			<h2 id="feedback">Make your Guess!</h2>
 
 			<form>
-				<input type="text" name="userGuess" id="userGuess" class="text" maxlength="3" autocomplete="off" placeholder="Enter your Guess" required/>
-      			<input type="submit" id="guessButton" class="button" name="submit" value="Guess"/>
+				<input type="number" name="user-guess" id="js-user-guess" class="text" max="100" min="0" autocomplete="off" placeholder="Enter a number between 0 and 100" required/>
+      			<input type="submit" id="js-guess-submit" class="button" />
 			</form>
 
-      		<p>Guess #<span id="count">0</span>!</p>
+      		<p>Guess #<span class="count">0</span>!</p>
 
 			<ul id="guessList" class="guessBox clearfix">
 
