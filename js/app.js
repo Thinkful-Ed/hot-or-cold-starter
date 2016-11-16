@@ -29,7 +29,7 @@ function startNewGame() {
 	// game not won yet, so set state accordingly
 	gameState.gameWon = false;
 
-	displayGameState();
+	displayGameState(gameState);
 }
 
 function handleUserGuesses() {
