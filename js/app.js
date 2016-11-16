@@ -2,10 +2,8 @@ var gameState = {
 	secretNumber: null,
 	userGuesses: null,
 	guessCount: null,
-	feedback: null,
+	feedback: null
 };
-
-
 
 function displayGameState(gameState) {
 	// display feedback to the user
@@ -28,12 +26,38 @@ function startNewGame() {
 	// user hasn't made any guesses at game start, so set
 	// `gameState.guessCount` to 0
 	gameState.guessCount = 0;
-	displayGameState();
+	displayGameState(gameState);
 }
 
 function handleUserGuesses() {
-	// When user clicks guess button, get the value they've
-	// entered as their guess and store as variable
+	// When user clicks guess button, get the value of their
+	// guess, send it along with correct answer to checkUserGuess
+	// in order to generate new feedback to display.
+	// Then update gameState with new feedback, and display game state
+	$('#js-guess-submit').click(function(event) {
+		// by default if user clicks a submit button/input,
+		// the browser will try to submit form. but that's not
+		// what we want to happen -- we want javascript to handle
+		// the form submission, so this line stops the default behavior.
+		event.preventDefault();
+		// increment `gameState.guessCount` by 1, since it's a new guess
+		gameState.guessCount += 1;
+		var userGuessRaw = $('#js-user-guess').val();
+		// the raw value will be a string, `parseInt` converts it to an
+		// integer.
+		// see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/parseInt
+		var userGuess = parseInt(userGuessRaw, 10);
+		//generate new feedback based on guess, and update `gameState`
+		var newFeedback = checkUserGuess(gameState.secretNumber, userGuess);
+		gameState.feedback = newFeedback;
+
+		// add the userGuess to `gameState.userGuesses`
+		gameState.userGuesses.push(userGuess);
+		// display the updated gameState
+		displayGameState(gameState);
+		// zero out the user guess so they can guess again
+		$('#js-user-guess').val(null);
+	});
 }
 
 function checkUserGuess(correctAnswer, userAnswer) {
