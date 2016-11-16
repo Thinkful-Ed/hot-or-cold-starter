@@ -227,7 +227,7 @@ h2 {
 	padding-bottom: 0.5em;
 }
 
-#count {
+.count {
 	color: #f39c12;
 	font-weight: 700;
 	font-size: 1.5em;
