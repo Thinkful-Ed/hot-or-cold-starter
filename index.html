@@ -20,7 +20,7 @@
 			<nav>
 				<ul class="clearfix">
 					<li><a class="js-what" href="#">What ?</a></li>
-					<li><a class="new" href="#">+ New Game</a></li>
+					<li><a class="new js-new-game" href="#">+ New Game</a></li>
 				</ul>
 			</nav>
 
@@ -48,14 +48,14 @@
 
 		<section class="game"> <!-- Guessing Section -->
 
-			<h2 id="feedback">Make your Guess!</h2>
+			<h2 id="feedback" class="js-feedback">Make your Guess!</h2>
 
 			<form>
 				<input type="number" name="user-guess" id="js-user-guess" class="text" max="100" min="1" autocomplete="off" placeholder="Enter a number between 0 and 100" required/>
       			<input type="submit" id="js-guess-submit" class="button" />
 			</form>
 
-      		<p>Guess #<span class="count">0</span>!</p>
+      		<p>Guess #<span class="count js-guess-count">0</span>!</p>
 
 			<ul id="guessList" class="guessBox clearfix js-guess-list">
 
