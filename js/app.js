@@ -28,7 +28,7 @@ function startNewGame() {
 	// user hasn't made any guesses at game start, so set
 	// `gameState.guessCount` to 0
 	gameState.guessCount = 0;
-	displayGameState();
+	displayGameState(gameState);
 }
 
 function handleUserGuesses() {
