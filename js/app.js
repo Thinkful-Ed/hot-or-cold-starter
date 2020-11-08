@@ -1,4 +1,4 @@
-
+//JQuery JS for number guessing game
 var randomNumber 
 var userGuess 
 var difference 
